@@ -2,22 +2,17 @@ package com.bionic.edu.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
-
-import com.bionic.edu.entity.Catalog;
+import com.bionic.edu.entity.CatalogTreePath;
 
 @Repository
-public class CatalogDaoImpl implements CatalogDao {
+public class CatalogTreePathDaoImpl implements CatalogTreePathDao {
 	@PersistenceContext
 	private EntityManager em = null;
-	
+
 	@Override
-	public void save(Catalog catalog) {
-		em.persist(catalog);
+	public void save(CatalogTreePath catalogTreePath) {
+		em.persist(catalogTreePath);
 	}
-	
-	public void addNewCatalog(Catalog catalog){
-		em.persist(catalog);
-	}
+
 }

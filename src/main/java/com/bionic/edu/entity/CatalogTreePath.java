@@ -5,23 +5,34 @@ import javax.persistence.*;
 @Entity
 public class CatalogTreePath {
 	@Id
-	private int descendant;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int catalogTreePathId;
+	private int ancestor;
+	@ManyToOne
+	@JoinColumn(name="descendant")
+	private Catalog catalog;
 
-	private int ancesor;
-
-	public int getDescendant() {
-		return descendant;
+	public Catalog getCatalog() {
+		return catalog;
 	}
 
-	public void setDescendant(int descendant) {
-		this.descendant = descendant;
+	public void setCatalog(Catalog catalog) {
+		this.catalog = catalog;
 	}
 
-	public int getAncesor() {
-		return ancesor;
+	public int getAncestor() {
+		return ancestor;
 	}
 
-	public void setAncesor(int ancesor) {
-		this.ancesor = ancesor;
+	public void setAncestor(int ancesor) {
+		this.ancestor = ancesor;
+	}
+
+	public int getCatalogTreePathId() {
+		return catalogTreePathId;
+	}
+
+	public void setCatalogTreePathId(int catalogTreePathId) {
+		this.catalogTreePathId = catalogTreePathId;
 	}
 }

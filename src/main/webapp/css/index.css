@@ -72,7 +72,7 @@ body {
 	padding-left: 20px;
 }
 .lowermain {
-	height: 280px;
+	height: 400px;
 	text-align: center;
 }
 
@@ -223,7 +223,7 @@ td {
 
 tbody {
 	display: block;
-	height: 290px; 
+	height: 400px; 
 	overflow: hidden;
     overflow-y: auto;
     background: #809FAA;
@@ -277,6 +277,7 @@ tbody {
 	overflow: hidden;
 }
 
+                    /* -------- delate button ------- */
 .deleteTransaction {
 	-webkit-border-radius: 3px;
 	height: 20px; 
@@ -313,7 +314,7 @@ tbody {
 .left-sidebar {
 	float: left;
 	width: 200px;
-	height: 560px;
+	height: 680px;
 	margin-left: -100%;
 	position: relative;
 	text-align: center;

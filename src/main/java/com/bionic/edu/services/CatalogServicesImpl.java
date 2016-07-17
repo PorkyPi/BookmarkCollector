@@ -3,6 +3,7 @@ package com.bionic.edu.services;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bionic.edu.dao.*;
@@ -17,9 +18,8 @@ public class CatalogServicesImpl implements CatalogServices {
 	public void save(Catalog catalog) {
 		catalogDao.save(catalog);
 	}
-	
-	
-	public void addNewCatalog(CatalogTreePath ctp, Catalog catalog){
-		catalogDao.addNewCatalog(ctp, catalog);
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void addNewCatalog(Catalog catalog){
+		catalogDao.addNewCatalog(catalog);
 	}
 }
