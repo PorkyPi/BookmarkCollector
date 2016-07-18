@@ -1,5 +1,8 @@
 package com.bionic.edu.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,16 @@ public class Bookmark {
 	private int markAsImportancy;
 	private java.sql.Date bookmarkAddedDate;
 	private String bookmarkLanguge;
+	@OneToMany(mappedBy="bookmark", cascade=CascadeType.PERSIST)
+	Collection<BookmarkTreePath> bookmarkTreePath;
+	
+	public Collection<BookmarkTreePath> getBookmarkTreePath() {
+		return bookmarkTreePath;
+	}
+
+	public void setBookmarkTreePath(Collection<BookmarkTreePath> bookmarkTreePath) {
+		this.bookmarkTreePath = bookmarkTreePath;
+	}
 
 	public int getBookmarkId() {
 		return bookmarkId;
@@ -79,4 +92,15 @@ public class Bookmark {
 		this.bookmarkLanguge = bookmarkLanguge;
 	}
 
+	public String toString(){
+		String txt = "bookmarkId = " + bookmarkId + "; bookmarkName = ";
+		txt += bookmarkName + "; bookmarkRef = " + bookmarkRef;
+		txt += "; bookmarkDescription = " + bookmarkDescription;
+		txt += "; markAsRead = " + markAsRead;
+		txt += "; markAsImportancy = " + markAsImportancy;
+		SimpleDateFormat dtFrm = new SimpleDateFormat("dd.MM.yyyy");
+		txt += "; bookmarkAddedDate = " + dtFrm;
+		txt += "; bookmarkLanguge = " + bookmarkLanguge;
+		return txt;
+	}
 }

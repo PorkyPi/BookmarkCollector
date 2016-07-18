@@ -14,7 +14,7 @@ public class testCatalogTreePathEntity {
 		CatalogTreePath path = new CatalogTreePath();
 		path.setAncestor(1);
 		
-		pathServices.save(path);
+		//pathServices.save(path);
 		System.out.println(path.getCatalogTreePathId());
 	}
 }

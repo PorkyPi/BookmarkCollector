@@ -36,5 +36,11 @@ public class Catalog {
 	public void setCatalogName(String catalogName) {
 		this.catalogName = catalogName;
 	}
+	
+	public String toString(){
+		String txt = "catalogId = " + catalogId;
+		txt += "; catalogName = " + catalogName;
+		return txt;
+	}
 
 }

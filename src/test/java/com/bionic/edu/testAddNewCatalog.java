@@ -1,3 +1,4 @@
+
 package com.bionic.edu;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class testAddNewCatalog {
 		list.add(catalogTreePath);
 		catalog.setCatalogTreePath(list);
 		catalogTreePath.setCatalog(catalog);
-		catalogServices.save(catalog);
+		catalogServices.addNewCatalog(catalog);
 		System.out.println(catalog.getCatalogId());
 	}
 }

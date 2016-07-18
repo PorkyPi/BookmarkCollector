@@ -12,8 +12,7 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	@PersistenceContext
 	private EntityManager em = null;
 	@Override
-	public void save(Bookmark bookmark) {
+	public void addNewBookmark(Bookmark bookmark) {
 		em.persist(bookmark);
 	}
-
 }

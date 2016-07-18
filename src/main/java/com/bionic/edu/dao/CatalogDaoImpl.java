@@ -12,11 +12,6 @@ public class CatalogDaoImpl implements CatalogDao {
 	@PersistenceContext
 	private EntityManager em = null;
 	
-	@Override
-	public void save(Catalog catalog) {
-		em.persist(catalog);
-	}
-	
 	public void addNewCatalog(Catalog catalog){
 		em.persist(catalog);
 	}

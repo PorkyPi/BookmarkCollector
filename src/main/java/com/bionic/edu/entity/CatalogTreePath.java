@@ -35,4 +35,10 @@ public class CatalogTreePath {
 	public void setCatalogTreePathId(int catalogTreePathId) {
 		this.catalogTreePathId = catalogTreePathId;
 	}
+	
+	public String toString(){
+		String txt = "catalogTreePathId = " + catalogTreePathId;
+		txt += "; ancestor = " + ancestor;
+		return txt;
+	}
 }

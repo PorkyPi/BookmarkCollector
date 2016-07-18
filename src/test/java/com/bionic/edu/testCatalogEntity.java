@@ -13,7 +13,7 @@ public class testCatalogEntity {
 		CatalogServices catalogServices = context.getBean(CatalogServices.class);
 		Catalog catalog = new Catalog();
 		catalog.setCatalogName("main");
-		catalogServices.save(catalog);
+		//catalogServices.save(catalog);
 		System.out.println(catalog.getCatalogId());
 	}
 }

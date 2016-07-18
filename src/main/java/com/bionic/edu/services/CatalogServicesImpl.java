@@ -14,10 +14,6 @@ public class CatalogServicesImpl implements CatalogServices {
 	@Inject
 	private CatalogDao catalogDao;
 	
-	@Transactional
-	public void save(Catalog catalog) {
-		catalogDao.save(catalog);
-	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void addNewCatalog(Catalog catalog){
 		catalogDao.addNewCatalog(catalog);
