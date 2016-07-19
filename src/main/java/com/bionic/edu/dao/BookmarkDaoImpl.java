@@ -15,4 +15,21 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	public void addNewBookmark(Bookmark bookmark) {
 		em.persist(bookmark);
 	}
+	@Override
+	public Bookmark findBookmarksById(int bookmarkId) {
+		return em.find(Bookmark.class, bookmarkId);
+	}
+	@Override
+	public void updateBookmark(Bookmark bookmark) {
+		if(em.find(Bookmark.class, bookmark.getBookmarkId()) != null){
+			em.merge(bookmark);
+		}
+	}
+	@Override
+	public void removeBookmark(Bookmark bookmark) {
+		bookmark = em.find(Bookmark.class, bookmark.getBookmarkId());
+		if(bookmark != null){
+			em.remove(bookmark);
+		}
+	}
 }

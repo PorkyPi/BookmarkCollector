@@ -1,7 +1,5 @@
 package com.bionic.edu.entity;
 
-import java.util.Collection;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,15 +8,14 @@ public class Catalog {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int catalogId;
 	private String catalogName;
-	@OneToMany(mappedBy="catalog", cascade=CascadeType.PERSIST)
-	private Collection<CatalogTreePath> catalogTreePath;
-	
-	public Collection<CatalogTreePath> getCatalogTreePath() {
-		return catalogTreePath;
+	private int catalogAncestor;
+
+	public int getCatalogAncestor() {
+		return catalogAncestor;
 	}
 
-	public void setCatalogTreePath(Collection<CatalogTreePath> catalogTreePath) {
-		this.catalogTreePath = catalogTreePath;
+	public void setCatalogAncestor(int catalogAncestor) {
+		this.catalogAncestor = catalogAncestor;
 	}
 
 	public int getCatalogId() {
@@ -38,8 +35,9 @@ public class Catalog {
 	}
 	
 	public String toString(){
-		String txt = "catalogId = " + catalogId;
-		txt += "; catalogName = " + catalogName;
+		String txt = "catalogId = " + this.catalogId;
+		txt += "; catalogName = " + this.catalogName;
+		txt += "; catalogAncestor = " + this.catalogAncestor;
 		return txt;
 	}
 

@@ -1,8 +1,7 @@
-package com.bionic.edu;
+package testsBookmarkServices;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,14 +24,10 @@ public class testAddNewBookmark {
 		bookmark.setMarkAsImportancy(3);
 		bookmark.setBookmarkAddedDate(Date.valueOf(LocalDate.of(2016, 7, 18)));
 		bookmark.setBookmarkLanguge("Eng");
+		bookmark.setCatalogAncestor(1);
 		
-		BookmarkTreePath bookmarkPath = new BookmarkTreePath();
-		bookmarkPath.setCatalogId(1);
-		
-		ArrayList<BookmarkTreePath> list = new ArrayList<BookmarkTreePath>();
-		list.add(bookmarkPath);
-		bookmark.setBookmarkTreePath(list);
-		bookmarkPath.setBookmark(bookmark);
 		bookmarkServices.addNewBookmark(bookmark);
+		
+		System.out.println(bookmark.getBookmarkId());
 	}
 }
