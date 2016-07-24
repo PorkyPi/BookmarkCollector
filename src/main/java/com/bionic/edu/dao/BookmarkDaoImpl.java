@@ -1,7 +1,10 @@
 package com.bionic.edu.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +19,7 @@ public class BookmarkDaoImpl implements BookmarkDao {
 		em.persist(bookmark);
 	}
 	@Override
-	public Bookmark findBookmarksById(int bookmarkId) {
+	public Bookmark findBookmarkById(int bookmarkId) {
 		return em.find(Bookmark.class, bookmarkId);
 	}
 	@Override
@@ -31,5 +34,17 @@ public class BookmarkDaoImpl implements BookmarkDao {
 		if(bookmark != null){
 			em.remove(bookmark);
 		}
+	}
+	@Override
+	public List<Bookmark> getAllBookmark() {
+		TypedQuery<Bookmark> query = em.createQuery("SELECT b FROM Bookmark b", Bookmark.class);
+		return query.getResultList();
+		
+	}
+	@Override
+	public List<Bookmark> findAllBookmarksByCatalogId(int catalogId) {
+		TypedQuery<Bookmark> query = 
+				em.createQuery("SELECT b FROM Bookmark b WHERE b.catalogAncestor = " + catalogId, Bookmark.class);
+		return query.getResultList();
 	}
 }

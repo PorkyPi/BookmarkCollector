@@ -1,5 +1,7 @@
 package com.bionic.edu.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,8 +16,8 @@ public class CatalogServicesImpl implements CatalogServices {
 	private CatalogDao catalogDao;
 	
 	@Transactional
-	public void addNewCatalog(Catalog catalog){
-		catalogDao.addNewCatalog(catalog);
+	public void saveCatalog(Catalog catalog){
+		catalogDao.saveCatalog(catalog);
 	}
 
 	@Transactional
@@ -24,12 +26,13 @@ public class CatalogServicesImpl implements CatalogServices {
 	}
 
 	@Transactional
-	public void updateCatalog(Catalog catalog) {
-		catalogDao.updateCatalog(catalog);
-	}
-
-	@Transactional
 	public void removeCatalog(Catalog catalog) {
 		catalogDao.removeCatalog(catalog);
 	}
+
+	@Transactional
+	public List<Catalog> getAllCatalogs() {
+		return catalogDao.getAllCatalogs();
+	}
+	
 }

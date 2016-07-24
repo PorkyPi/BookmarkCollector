@@ -1,5 +1,7 @@
 package com.bionic.edu.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,8 +21,8 @@ public class BookmarkServicesImpl implements BookmarkServices {
 	}
 
 	@Transactional
-	public Bookmark findBookmarksById(int bookmarkId) {
-		return bookmarkDao.findBookmarksById(bookmarkId);
+	public Bookmark findBookmarkById(int bookmarkId) {
+		return bookmarkDao.findBookmarkById(bookmarkId);
 	}
 
 	@Transactional
@@ -32,4 +34,15 @@ public class BookmarkServicesImpl implements BookmarkServices {
 	public void removeBookmark(Bookmark bookmark) {
 		bookmarkDao.removeBookmark(bookmark);
 	}
+
+	@Transactional
+	public List<Bookmark> getAllBookmarks() {
+		return bookmarkDao.getAllBookmark();
+	}
+
+	@Transactional
+	public List<Bookmark> getAllBookmarksByCatalogId(int catalogId) {
+		return bookmarkDao.findAllBookmarksByCatalogId(catalogId);
+	}
+	
 }

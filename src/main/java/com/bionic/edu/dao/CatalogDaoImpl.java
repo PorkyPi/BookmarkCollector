@@ -1,7 +1,10 @@
 package com.bionic.edu.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +16,7 @@ public class CatalogDaoImpl implements CatalogDao {
 	private EntityManager em = null;
 	
 	@Override
-	public void addNewCatalog(Catalog catalog){
+	public void saveCatalog(Catalog catalog){
 		em.persist(catalog);
 	}
 
@@ -23,17 +26,17 @@ public class CatalogDaoImpl implements CatalogDao {
 	}
 
 	@Override
-	public void updateCatalog(Catalog catalog) {
-		if(em.find(Catalog.class, catalog.getCatalogId()) != null){	
-			em.merge(catalog);
-		}
-	}
-
-	@Override
 	public void removeCatalog(Catalog catalog) {
 		catalog = em.find(Catalog.class, catalog.getCatalogId());
 		if(catalog != null){
 			em.remove(catalog);
 		}
+	}
+
+	@Override
+	public List<Catalog> getAllCatalogs() {
+		TypedQuery<Catalog> query = em.createQuery("SELECT c FROM Catalog c", Catalog.class);
+		List<Catalog> listCatalogs = query.getResultList();
+		return listCatalogs;
 	}
 }
