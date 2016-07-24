@@ -119,8 +119,15 @@
 			<strong>Каталоги</strong>
 			<div class="treeCatalogs">
 				${catalogList}
-				${catalogEditor}
-				<cf:form>
+				
+				<cf:form method="POST" action="editCatalog" modelAttribute="catalog">
+					<cf:label class="catalogLabel" path="catalogName">Name</cf:label>
+					<cf:input class="catalogEditor" path="catalogName"/>
+					<p></p>
+					<cf:label class="catalogLabel" path="catalogAncestor">Ancestor</cf:label>
+					<cf:input class="catalogEditor" path="catalogAncestor"/>
+					<p></p>
+					<input type="submit" value="Submit"/>
 				</cf:form>
 			</div>
 		</aside>

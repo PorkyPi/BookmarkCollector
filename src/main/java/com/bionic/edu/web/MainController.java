@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,16 +34,23 @@ public class MainController {
 		this.getAllBookmarksByCatalogId(catalogId);
 		model.addAttribute("bookmarksList", blist);
 		model.addAttribute("catalogList", catalogView);
+		Catalog catalog = new Catalog();
+		catalog.setCatalogAncestor(catalogId);
+		model.addAttribute("catalog", catalog);
 		return "main";
 	}
 	
-	@RequestMapping(value = "/editCatalog", method = RequestMethod.GET)
-	public String newCatalog(@RequestParam("catalogId") int catalogId, ModelMap model){
-		this.bealdCatalog(1);
+	@RequestMapping(value = "/editCatalog", method = RequestMethod.POST)
+	public String editCatalog(@ModelAttribute("catalog") Catalog catalog,  ModelMap model){
+		catServices.saveCatalog(catalog);
+		int catalogId = catalog.getCatalogId();
 		this.getAllBookmarksByCatalogId(catalogId);
+		this.bealdCatalog(1);
 		model.addAttribute("bookmarksList", blist);
 		model.addAttribute("catalogList", catalogView);
-		model.addAttribute("catalogEditor", this.createCatalogForm());
+		catalog = new Catalog();
+		catalog.setCatalogAncestor(catalogId);
+		model.addAttribute("catalog", catalog);
 		return "main";
 	}
 	
@@ -85,19 +93,6 @@ public class MainController {
 				txt += "</div>";
 			}
 		}
-		return txt;
-	}
-	
-	private String createCatalogForm(){
-		String txt = "<cf:form method=\"POST\" action=\"newCatalog\" modelAttribute=\"catalog\">";
-		txt += "<cf:label class=\"catalogLabel\" path=\"catalogId\">Id</cf:label>";
-		txt += "<cf:input class=\"catalogEditor\" path=\"catalogId\" />";
-		txt += "<cf:label class=\"catalogLabel\" path=\"catalogName\">Id</cf:label>";
-		txt += "<cf:input class=\"catalogEditor\" path=\"catalogName\" />";
-		txt += "<cf:label class=\"catalogLabel\" path=\"catalogAncestor\">Id</cf:label>";
-		txt += "<cf:input class=\"catalogEditor\" path=\"catalogAncestor\" />";
-		txt += "<input type=\"submit\" value=\"Save\"/>";
-		txt += "</cf:form>";
 		return txt;
 	}
 }
