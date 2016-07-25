@@ -17,7 +17,10 @@ public class CatalogDaoImpl implements CatalogDao {
 	
 	@Override
 	public void saveCatalog(Catalog catalog){
-		em.persist(catalog);
+		if(catalog.getCatalogId() == 0) 
+			em.persist(catalog);
+		else 
+			em.merge(catalog);
 	}
 
 	@Override

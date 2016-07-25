@@ -27,47 +27,42 @@
 
 					<div class="notebook">
 						<input type="radio" name="notebook1" id="notebook1_1" checked>
-						<label for="notebook1_1">Подробно</label> <input type="radio"
-							name="notebook1" id="notebook1_2"> <label
-							for="notebook1_2">Редактирование</label> <input type="radio"
-							name="notebook1" id="notebook1_3"> <label
-							for="notebook1_3">Добавить новую закладку</label>
-
-
+						<label for="notebook1_1">Подробно</label> 
+						<input type="radio" name="notebook1" id="notebook1_2"> 
+						<label for="notebook1_2">Редактирование и сохранение</label> 
 						<div>
-							<p>Это перевая вкладка - подробно</p>
-							<p>Здесь будет вся информация о вкладке</p>
+							<p>Подробности</p>
+							<p>Для создание новой вкладки: сначала откройте каталог куда нужно сохранить вкладку,
+								затем откройте вкладку редактирование и сохранение. После тщательно заполните все
+								поля и нажмите кнопку сохранить</p>
+							<p>Для редактирования существующей закладки: выберете закладку в списке и нажмите
+								"ред" после чего во вкладке редактирование и сохрание измените нужные поля.</p>
 						</div>
 						<div>
-							<form name="editor">
-								<label class="label">id</label><input type="text"
-									class="IncomOutcomForm"><br>
+							<cf:form method="POST" action="newBookmark" modelAttribute="bookmark">
+								<cf:hidden path="bookmarkAddedDate" />
+								<cf:hidden path="catalogAncestor" />
+								<cf:hidden path="bookmarkId" />
+								<cf:label class="label" path="bookmarkName">Имя</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="bookmarkName"/><br>
 								<p></p>
-								<label class="label">Имя</label><input type="text"
-									class="IncomOutcomForm"><br>
+								<cf:label class="label" path="bookmarkRef">Ссылка</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="bookmarkRef" /><br>
 								<p></p>
-								<label class="label">Ссылка</label><input type="text"
-									class="IncomOutcomForm"><br>
+								<cf:label class="label" path="bookmarkDescription">Описание</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="bookmarkDescription" /><br>
 								<p></p>
-								<label class="label">Описание</label><input type="text"
-									class="IncomOutcomForm"><br>
+								<cf:label class="label" path="markAsRead">Прочитано</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="markAsRead" /><br>
 								<p></p>
-								<label class="label">Прочитано</label><input type="text"
-									class="IncomOutcomForm"><br>
+								<cf:label class="label" path="markAsImportancy">Важность</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="markAsImportancy" /><br>
 								<p></p>
-								<label class="label">Важность</label><input type="text"
-									class="IncomOutcomForm"><br>
+								<cf:label class="label" path="bookmarkLanguge">Язык</cf:label>
+								<cf:input type="text" class="IncomOutcomForm" path="bookmarkLanguge" /><br>
 								<p></p>
-								<label class="label">Дата</label><input type="text"
-									class="IncomOutcomForm"><br>
-								<p></p>
-								<label class="label">Язык</label><input type="text"
-									class="IncomOutcomForm"><br>
-							</form>
-						</div>
-						<div>
-							<p>Это третья вкладка - добавить</p>
-							<p>Здесь можно будет добавить новую закладку</p>
+								<input type="submit" value="Save">
+							</cf:form>
 						</div>
 					</div>
 
@@ -103,7 +98,7 @@
 										<td id="fifth"><c:out value="${bookmark.markAsImportancy}" /></td>
 										<td id="sixth"><c:out value="${bookmark.bookmarkAddedDate}" /></td>
 										<td id="seventh"><c:out value="${bookmark.bookmarkLanguge}" /></td>
-										<td id="eighth">del</td>
+										<td id="eighth"><a href="editBookmark?bookamrkId=${bookmark.bookmarkId}">ред.</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -119,15 +114,15 @@
 			<strong>Каталоги</strong>
 			<div class="treeCatalogs">
 				${catalogList}
-				
-				<cf:form method="POST" action="editCatalog" modelAttribute="catalog">
+				<p>Для сохраниения нового каталога сначала выберете в каком каталоге его сохранить</p>
+				<p>Для редактирование выберете каталог и нажмите "ред"</p>
+				<cf:form method="POST" action="newCatalog" modelAttribute="catalog">
+					<cf:hidden path="catalogId" />
+					<cf:hidden path="catalogAncestor" />
 					<cf:label class="catalogLabel" path="catalogName">Name</cf:label>
 					<cf:input class="catalogEditor" path="catalogName"/>
 					<p></p>
-					<cf:label class="catalogLabel" path="catalogAncestor">Ancestor</cf:label>
-					<cf:input class="catalogEditor" path="catalogAncestor"/>
-					<p></p>
-					<input type="submit" value="Submit"/>
+					<input type="submit" value="Save"/>
 				</cf:form>
 			</div>
 		</aside>
