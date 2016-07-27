@@ -2,11 +2,14 @@ package com.bionic.edu.entity;
 
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Catalog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int catalogId;
+	@NotEmpty(message="Name can not be empty")
 	private String catalogName;
 	private int catalogAncestor;
 

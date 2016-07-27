@@ -3,18 +3,33 @@ package com.bionic.edu.entity;
 import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Bookmark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookmarkId;
+	@NotEmpty(message="Name can not be empty")
 	private String bookmarkName;
+	@NotEmpty(message="Reference can not be empty")
 	private String bookmarkRef;
+	@NotEmpty(message="Description can not be empty")
 	private String bookmarkDescription;
+	@Digits(integer=1 ,fraction=0 , message="Mark must be 1 digit, 1 or 0")
+	@Min(0)
+	@Max(1)
 	private int markAsRead;
+	@Digits(integer=1, fraction=0, message="Mark musst be 1 digit, from 0 to 5")
+	@Min(0)
+	@Max(5)
 	private int markAsImportancy;
 	private java.sql.Date bookmarkAddedDate;
+	@NotEmpty(message="The form languge can not be empty")
 	private String bookmarkLanguge;
 	private int catalogAncestor;
 

@@ -31,15 +31,20 @@ h3 {
 }
 
 body {
-	background: #060D0F;
+	background: #606060;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-attachment: fixed;
 	background-size: 100% 100%;
 	font: normal 14px Arial, Sans-serif;
-	color: #3E8988;
+	color: #000000;
 }
 
+.error {
+	color: red;
+	font: 10px;
+	overflow: right;
+}
 /* Header
 -----------------------------------------------------------------------------*/
 
@@ -70,12 +75,12 @@ body {
 	padding: 0 0 0 200px;
 }
 .uppermain {
-	height: 280px;
+	height: 300px;
 	box-shadow: inset 0px -8px 8px -8px rgba(3,3,3,1);
 	padding-left: 20px;
 }
 .lowermain {
-	height: 400px;
+	height: 100%;
 	text-align: center;
 }
 
@@ -184,7 +189,6 @@ body {
 	   inset rgba(255,255,255,.9) -5px 7px 8px -8px,
 	   rgba(0,0,0,.8) 3px 3px 8px -3px;
 }
-
 /* Content in Lower Middle
 -----------------------------------------------------------------------------*/
 h4 {
@@ -200,7 +204,7 @@ table {
 	margin: auto;
 	empty-cells: hide;
 	text-align: left;
-	height: 100%;
+	height: 335px;
 	ord-break: break-all;
 	word-wrap: break-word;
 	width: 1120;
@@ -227,7 +231,7 @@ td {
 
 tbody {
 	display: block;
-	height: 400px; 
+	height: 335px; 
 	overflow: hidden;
     overflow-y: auto;
     background: #809FAA;
@@ -324,7 +328,7 @@ tbody {
 .left-sidebar {
 	float: left;
 	width: 200px;
-	height: 680px;
+	height: 700px;
 	margin-left: -100%;
 	position: relative;
 	border-radius: 0 7px 7px 0;
@@ -367,7 +371,7 @@ tbody {
 }
 
 .treeCatalogs summary {
-	/* стилями можно задать любую форму, например, тот же плюс. Я специально не стала усложнять, чтобы можно было проще разобраться в коде */
+	/* стилями можно задать любую форму, например, тот же плюс. Я специально не стал усложнять, чтобы можно было проще разобраться в коде */
 	position: absolute;
 	top: 0;
 	left: 0;

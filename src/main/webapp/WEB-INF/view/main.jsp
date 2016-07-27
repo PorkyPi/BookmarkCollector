@@ -45,23 +45,29 @@
 								<cf:hidden path="bookmarkId" />
 								<cf:label class="label" path="bookmarkName">Имя</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="bookmarkName"/><br>
+								<cf:errors path="bookmarkName" cssClass="error"/>
 								<p></p>
 								<cf:label class="label" path="bookmarkRef">Ссылка</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="bookmarkRef" /><br>
+								<cf:errors path="bookmarkRef" cssClass="error"/>
 								<p></p>
 								<cf:label class="label" path="bookmarkDescription">Описание</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="bookmarkDescription" /><br>
+								<cf:errors path="bookmarkDescription" cssClass="error"/>
 								<p></p>
 								<cf:label class="label" path="markAsRead">Прочитано</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="markAsRead" /><br>
+								<cf:errors path="markAsRead" cssClass="error"/>
 								<p></p>
 								<cf:label class="label" path="markAsImportancy">Важность</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="markAsImportancy" /><br>
+								<cf:errors path="markAsImportancy" cssClass="error"/>
 								<p></p>
 								<cf:label class="label" path="bookmarkLanguge">Язык</cf:label>
 								<cf:input type="text" class="IncomOutcomForm" path="bookmarkLanguge" /><br>
+								<cf:errors path="bookmarkLanguge" cssClass="error"/>
 								<p></p>
-								<input type="submit" value="Save">
+								<input class="buttonAdd" type="submit" value="Save">
 							</cf:form>
 						</div>
 					</div>
@@ -121,6 +127,7 @@
 					<cf:hidden path="catalogAncestor" />
 					<cf:label class="catalogLabel" path="catalogName">Name</cf:label>
 					<cf:input class="catalogEditor" path="catalogName"/>
+					<cf:errors path="catalogName" cssClass="error"/>
 					<p></p>
 					<input type="submit" value="Save"/>
 				</cf:form>
@@ -129,8 +136,6 @@
 
 	</div>
 	<!-- .middle-->
-	<footer class="footer">
-		<p>v0.01</p>
-	</footer>
+	
 </body>
 </html>
