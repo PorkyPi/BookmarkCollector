@@ -104,7 +104,10 @@
 										<td id="fifth"><c:out value="${bookmark.markAsImportancy}" /></td>
 										<td id="sixth"><c:out value="${bookmark.bookmarkAddedDate}" /></td>
 										<td id="seventh"><c:out value="${bookmark.bookmarkLanguge}" /></td>
-										<td id="eighth"><a href="editBookmark?bookamrkId=${bookmark.bookmarkId}">ред.</a></td>
+										<td id="eighth"><a class="buttonreductor" href="editBookmark?bookamrkId=${bookmark.bookmarkId}">ред.</a>
+										<p></p>
+										<a class="buttonreductor" href="delateBookmark?bookmarkId=${bookmark.bookmarkId}">del.</a>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

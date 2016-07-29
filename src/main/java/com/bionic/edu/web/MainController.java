@@ -55,6 +55,56 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping(value = "/delateBookmark", method = RequestMethod.GET)
+	public String delateBookmark(@RequestParam("bookmarkId") int bookmarkId, ModelMap model){
+		Bookmark bookmark = bookServices.findBookmarkById(bookmarkId);
+		int catalogId = bookmark.getCatalogAncestor();
+		bookServices.removeBookmark(bookmark);
+		
+		this.getAllBookmarksByCatalogId(catalogId);       //+извлекаем все закладки по номеру каталога
+		model.addAttribute("bookmarksList", blist);
+		
+		this.bealdCatalog(1, catalogId);                  //+-Создаем уже прорисованное дерево каталогов
+		model.addAttribute("catalogList", catalogView);
+		
+		Catalog catalog = new Catalog();                  //+Добавляем сущность каталога в модель
+		catalog.setCatalogAncestor(catalogId);
+		model.addAttribute("catalog", catalog);
+		
+		bookmark = new Bookmark();               //Добавляем сущность закладки в модель
+		bookmark.setCatalogAncestor(catalogId);
+		model.addAttribute("bookmark", bookmark);
+		return "main";
+	}
+	
+	@RequestMapping(value = "/delateCatalog", method = RequestMethod.GET)
+	public String delateCatalogAndBookmarks(@RequestParam("catalogId") int catalogId, ModelMap model){
+		Catalog catalog = catServices.findCatalogById(catalogId);
+		catServices.removeCatalog(catalog);
+		
+		this.getAllBookmarksByCatalogId(catalogId);
+		for(Bookmark bookmark: blist){
+			bookServices.removeBookmark(bookmark);
+		}
+		
+		catalogId = 1;
+		
+		this.getAllBookmarksByCatalogId(catalogId);       //+извлекаем все закладки по номеру каталога
+		model.addAttribute("bookmarksList", blist);
+		
+		this.bealdCatalog(1, catalogId);                  //+-Создаем уже прорисованное дерево каталогов
+		model.addAttribute("catalogList", catalogView);
+		
+		catalog = new Catalog();                  //+Добавляем сущность каталога в модель
+		catalog.setCatalogAncestor(catalogId);
+		model.addAttribute("catalog", catalog);
+		
+		Bookmark bookmark = new Bookmark();               //Добавляем сущность закладки в модель
+		bookmark.setCatalogAncestor(catalogId);
+		model.addAttribute("bookmark", bookmark);
+		return "main";
+	}
+	
 	@RequestMapping(value = "editBookmark", method = RequestMethod.GET)
 	public String editBookmark(@RequestParam("bookamrkId") int bookamrkId, ModelMap model) {
 		
@@ -179,7 +229,8 @@ public class MainController {
 		this.clist = catServices.getAllCatalogs();
 		this.catalogView += "<div>" + "<a class=\"catalogs\" href=\"catalog?catalogId=1\">All</a>" + "</div>";
 		this.catalogView += this.bealdTree(clist, catalogAncestor);
-		this.catalogView += "<a href=\"" + catalogId + "\">ред.</a>" ;
+		this.catalogView += "<a class=\"buttonreductor\" href=\"" + catalogId + "\">ред.</a>" ;
+		this.catalogView += "<a class=\"buttonreductor\" href=\"delateCatalog?catalogId=" + catalogId + "\">del</a>";
 	}
 	
 	private String bealdTree(List<Catalog> list, int catalogId){

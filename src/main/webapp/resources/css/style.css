@@ -45,6 +45,18 @@ body {
 	font: 10px;
 	overflow: right;
 }
+
+.buttonreductor {
+	color: #CD5C5C;
+}
+
+.buttonreductor:visited {
+	color: #CD5C5C;
+}
+
+.buttonreductor:active {
+	color: #CD5C5C;
+}
 /* Header
 -----------------------------------------------------------------------------*/
 
