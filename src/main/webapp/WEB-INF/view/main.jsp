@@ -106,7 +106,7 @@
 										<td id="seventh"><c:out value="${bookmark.bookmarkLanguge}" /></td>
 										<td id="eighth"><a class="buttonreductor" href="editBookmark?bookamrkId=${bookmark.bookmarkId}">ред.</a>
 										<p></p>
-										<a class="buttonreductor" href="delateBookmark?bookmarkId=${bookmark.bookmarkId}">del.</a>
+										<a class="buttonreductor" href="deleteBookmark?bookmarkId=${bookmark.bookmarkId}">del.</a>
 										</td>
 									</tr>
 								</c:forEach>

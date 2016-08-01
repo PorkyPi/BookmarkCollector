@@ -77,8 +77,8 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/delateCatalog", method = RequestMethod.GET)
-	public String delateCatalogAndBookmarks(@RequestParam("catalogId") int catalogId, ModelMap model){
+	@RequestMapping(value = "/deleteCatalog", method = RequestMethod.GET)
+	public String deleteCatalogAndBookmarks(@RequestParam("catalogId") int catalogId, ModelMap model){
 		Catalog catalog = catServices.findCatalogById(catalogId);
 		catServices.removeCatalog(catalog);
 		
