@@ -142,7 +142,6 @@ public class MainController {
 			}
 			
 			int catalogId = bookmark.getCatalogAncestor();                    //извлечение номера каталога
-			System.out.println("Heare");
 			Catalog catalog = new Catalog();                                  //+Добавляем сущность каталога в модель
 			catalog.setCatalogAncestor(catalogId);
 			model.addAttribute("catalog", catalog);
