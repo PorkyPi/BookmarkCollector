@@ -12,6 +12,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -129,8 +130,19 @@ public class MainController {
 		
 		
 		if(bindingResult.hasErrors()){
-			int catalogId = bookmark.getCatalogAncestor();                    //извлечение номера каталога
 			
+			if(bookmark.getBookmarkId() != 0){
+				bookmark.setBookmarkAddedDate(Date.valueOf(LocalDate.now()));
+				bookServices.addNewBookmark(bookmark);
+				int catalogId = bookmark.getCatalogAncestor();
+				
+				Bookmark newBookmark = new Bookmark();                           
+				newBookmark.setCatalogAncestor(catalogId);
+				model.addAttribute("bookmark", newBookmark);                      //Добавляем сущность закладки в модель
+			}
+			
+			int catalogId = bookmark.getCatalogAncestor();                    //извлечение номера каталога
+			System.out.println("Heare");
 			Catalog catalog = new Catalog();                                  //+Добавляем сущность каталога в модель
 			catalog.setCatalogAncestor(catalogId);
 			model.addAttribute("catalog", catalog);
@@ -230,7 +242,7 @@ public class MainController {
 		this.catalogView += "<div>" + "<a class=\"catalogs\" href=\"catalog?catalogId=1\">All</a>" + "</div>";
 		this.catalogView += this.bealdTree(clist, catalogAncestor);
 		this.catalogView += "<a class=\"buttonreductor\" href=\"" + catalogId + "\">ред.</a>" ;
-		this.catalogView += "<a class=\"buttonreductor\" href=\"delateCatalog?catalogId=" + catalogId + "\">del</a>";
+		this.catalogView += "<a class=\"buttonreductor\" href=\"deleteCatalog?catalogId=" + catalogId + "\">del</a>";
 	}
 	
 	private String bealdTree(List<Catalog> list, int catalogId){

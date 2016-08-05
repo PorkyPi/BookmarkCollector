@@ -16,10 +16,14 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	private EntityManager em = null;
 	@Override
 	public void addNewBookmark(Bookmark bookmark) {
-		if(bookmark.getBookmarkId() == 0) 
+		if(bookmark.getBookmarkId() == 0) {
+			
 			em.persist(bookmark);
-		else 
+		}	
+		else {
+		
 			em.merge(bookmark);
+		}
 	}
 	@Override
 	public Bookmark findBookmarkById(int bookmarkId) {
